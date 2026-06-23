@@ -12,32 +12,33 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary    = Teal400,
+    secondary  = Amber400,
+    tertiary   = Green400,
+    background = Navy900,
+    surface    = Navy800,
+    onPrimary  = Navy900,
+    onSecondary = Navy900,
+    onBackground = CardBg,
+    onSurface  = CardBg
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    primary    = Teal500,
+    secondary  = Amber500,
+    tertiary   = Green500,
+    background = Surface,
+    surface    = CardBg,
+    onPrimary  = CardBg,
+    onSecondary = Navy900,
+    onBackground = OnSurface,
+    onSurface  = OnSurface
 )
 
 @Composable
 fun Mobileactivity02Theme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,          // disabled so our brand palette is always used
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
@@ -45,14 +46,13 @@ fun Mobileactivity02Theme(
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
-
         darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+        else      -> LightColorScheme
     }
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
-        content = content
+        typography  = Typography,
+        content     = content
     )
 }
